@@ -20,7 +20,7 @@ typeName = st.selectbox('Type', df['TypeName'].unique())
 inches = st.number_input('Screen size')
 
 #Touchscreen
-touchScreen = st.selectbox('TouchScreen',['No','Yes'])
+touchscreen = st.selectbox('TouchScreen',['No','Yes'])
 
 #Ips
 ips = st.selectbox("IPS", ['No', 'Yes'])
@@ -49,7 +49,7 @@ ssd = st.selectbox('SSD(GB)',[0,8,128,256,512,1024])
 gpu = st.selectbox('GPU',df['Gpu_brand'].unique())
 
 #OS
-os = st.selectbox('OS',df['os'].unique())
+os = st.selectbox('OS',df['OpSys'].unique())
 
 #weight
 weight = st.number_input("Weight of the Laptop")
@@ -69,8 +69,9 @@ if st.button('Predict Price'):
         
     X_res = int(resolution.split('x')[0])
     Y_res = int(resolution.split('x')[1])
-    ppi = ((X_res ** 2) + (Y_res**2)) ** 0.5 / screen_size
-    query = np.array([company,lap_type,inches,touchscreen,ips, X_res, Y_res, ppi,cpu,cpuFreq,ram,hdd,ssd,gpu,os,weight])
-    query = query.reshape(1, 12)
+    ppi = ((X_res ** 2) + (Y_res**2)) ** 0.5 / inches
+    query = np.array([company,typeName,inches,touchscreen,ips, X_res, Y_res, ppi,cpu,cpuFreq,ram,hdd,ssd,gpu,os,weight])
+    query = query.reshape(1, 16)
+    print(query)
     prediction = str(int(np.exp(pipe.predict(query)[0])))
     st.title("The predicted price of this configuration is " + prediction)
