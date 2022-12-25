@@ -70,7 +70,7 @@ if st.button('Predict Price'):
     X_res = int(resolution.split('x')[0])
     Y_res = int(resolution.split('x')[1])
     ppi = ((X_res ** 2) + (Y_res**2)) ** 0.5 / screen_size
-    query = np.array([company,lap_type,ram,weight,touchscreen,ips,ppi,cpu,hdd,ssd,gpu,os])
+    query = np.array([company,lap_type,inches,touchscreen,ips, X_res, Y_res, ppi,cpu,cpuFreq,ram,hdd,ssd,gpu,os,weight])
     query = query.reshape(1, 12)
     prediction = str(int(np.exp(pipe.predict(query)[0])))
     st.title("The predicted price of this configuration is " + prediction)
