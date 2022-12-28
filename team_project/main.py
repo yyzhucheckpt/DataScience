@@ -3,7 +3,6 @@ import pickle
 import numpy as np
 import pandas as pd
 import shap
-#import matplotlib
 import matplotlib.pyplot as plt
 
 
@@ -203,7 +202,7 @@ if st.button('Predict Churn'):
         Marital_Status_Single = 0                
         Marital_Status_Unknown = 0
         
-    query = np.array([Customer_Age,Gender,Dependent_count,Months_on_book,
+    query = np.array([Customer_Age,gender_val,Dependent_count,Months_on_book,
     Total_Relationship_Count, Months_Inactive_12_mon ,Contacts_Count_12_mon, 
 Credit_Limit, Total_Revolving_Bal, Avg_Open_To_Buy, Total_Amt_Chng_Q4_Q1, 
 Total_Trans_Amt, Total_Trans_Ct, Total_Ct_Chng_Q4_Q1, Avg_Utilization_Ratio,              
@@ -216,10 +215,10 @@ Income_Category_120K_plus,  Income_Category_60K,
 Income_Category_80K,  Income_Category_120K,        
 Income_Category_40K, Income_Category_Unknown,            
 Card_Category_Blue, Card_Category_Gold,                  
-Card_Category_Platinum, Card_Category_Silver ])
+Card_Category_Platinum, Card_Category_Silver], dtype=object)
     query = query.reshape(1, 36)
     print(query)
-    prediction = str(int(np.exp(model.predict(query)[0])))
+    prediction = str(int(model.predict(query)[0]))
     st.title("The predicted churn of this customer is " + prediction)
 
 
