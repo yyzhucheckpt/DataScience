@@ -2,7 +2,9 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
-
+import shap
+#import matplotlib
+import matplotlib.pyplot as plt
 #load the model and dataFrame
 df = pd.read_csv("df.csv")
 pipe = pickle.load(open("pipe.pkl","rb"))
@@ -75,3 +77,19 @@ if st.button('Predict Price'):
     print(query)
     prediction = str(int(np.exp(pipe.predict(query)[0])))
     st.title("The predicted price of this configuration is " + prediction)
+
+
+    shap.initjs()
+
+    #set the tree explainer as the model of the pipeline
+    explainer = shap.TreeExplainer(pipe['rfr'])
+
+    #apply the preprocessing to x_test
+    observation = pipe['ctf'].transform(query)
+
+    #get Shap values from preprocessed data
+    shap_values = explainer.shap_values(observation)
+
+    #plot the feature importance
+    fig = shap.force_plot(explainer.expected_value, shap_values,observation, matplotlib=True,show=False)
+    st.pyplot(fig)
