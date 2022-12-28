@@ -35,7 +35,7 @@ Marital_Status = st.selectbox('Marital_Status',['Single','Married','Divorced'])
 Income_Category = st.selectbox('Income_Category',['Less than $40K','$40K - $60K','$60K - $80K','$80K - $120K','$120K +'])
 
 #Credit_Limit 
-Credit_Limit = st.slider('Credit_Limit', 0, 100000, 8000.00, 0.01)
+Credit_Limit = st.number_input(label='Credit_Limit', value=8000.00)
 
 #Months_on_book 
 Months_on_book = st.slider('Months_on_book', 0, 1200, 36, 1)
@@ -50,25 +50,25 @@ Months_Inactive_12_mon = st.slider('Months_Inactive_12_mon', 0, 1200, 2, 1)
 Contacts_Count_12_mon = st.slider('Contacts_Count_12_mon', 0, 1000, 2, 1)
 
 #Total_Trans_Amt 
-Total_Trans_Amt = st.slider('Total_Trans_Amt', 0, 100000, 4000.00, 0.01)
+Total_Trans_Amt = st.number_input(label='Total_Trans_Amt', value=4000.00)
 
 #Total_Trans_Ct 
 Total_Trans_Ct = st.slider('Total_Trans_Ct', 0, 10000, 65, 1)
 
 #Total_Revolving_Bal
-Total_Revolving_Bal = st.slider('Total_Revolving_Bal', 0, 80000, 1000.00, 0.01)
+Total_Revolving_Bal = st.number_input(label='Total_Revolving_Bal', value=1000.00)
 
 #Avg_Open_To_Buy
-Avg_Open_To_Buy = st.slider('Avg_Open_To_Buy', 0, 100000, 7500.00, 0.01)
+Avg_Open_To_Buy = st.number_input(label='Avg_Open_To_Buy', value=7500.00)
 
 #Total_Ct_Chng_Q4_Q1 
-Total_Ct_Chng_Q4_Q1 = st.slider('Total_Ct_Chng_Q4_Q1', 0, 100, 0.7, 0.001)
+Total_Ct_Chng_Q4_Q1 = st.number_input(label='Total_Ct_Chng_Q4_Q1', value=0.7)
 
 #Total_Amt_Chng_Q4_Q1 
-Total_Amt_Chng_Q4_Q1 = st.slider('Total_Amt_Chng_Q4_Q1', 0, 100, 0.7, 0.001)
+Total_Amt_Chng_Q4_Q1 = st.number_input(label='Total_Amt_Chng_Q4_Q1', value=0.7)
 
 #Avg_Utilization_Ratio 
-Avg_Utilization_Ratio = st.slider('Avg_Utilization_Ratio', 0, 1, 0.3, 0.001)
+Avg_Utilization_Ratio = st.number_input(label='Avg_Utilization_Ratio', value=0.3)
 
 if st.button('Predict Churn'):
     if Gender == "Male":
